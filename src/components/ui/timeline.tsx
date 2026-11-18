@@ -24,7 +24,7 @@ const all=[...top,...bottom].sort((a,b)=>Number(a.year)-Number(b.year)||a.id.loc
 const query='(prefers-reduced-motion: reduce)'
 const subscribe=(cb:()=>void)=>{if(typeof window==='undefined')return()=>{};const m=matchMedia(query);m.addEventListener('change',cb);return()=>m.removeEventListener('change',cb)}
 const snapshot=()=>typeof window!=='undefined'&&matchMedia(query).matches
-const mobileQuery='(max-width: 600px)'
+const mobileQuery='(max-width: 1024px)'
 const subscribeMobile=(cb:()=>void)=>{if(typeof window==='undefined')return()=>{};const m=matchMedia(mobileQuery);m.addEventListener('change',cb);return()=>m.removeEventListener('change',cb)}
 const mobileSnapshot=()=>typeof window!=='undefined'&&matchMedia(mobileQuery).matches
 
@@ -57,6 +57,8 @@ export default function Timeline({title='Product Storyline',periodLabel='2020 â€
   },[normalized,reduced,mobile])
   const colors={color:textColor,backgroundColor} as CSSProperties,accent={backgroundColor:activeColor},muted={color:mutedTextColor}
   const item=(x:JourneyItem,isTop:boolean)=><div key={x.id} className={`timeline-item ${isTop?'timeline-top':'timeline-bottom'}`}><div className="timeline-stem"><span className={`timeline-dot jd-${x.id}`} style={accent}/><i className={`timeline-line jl-${x.id}`} style={accent}/></div><div className="timeline-copy"><h4 className={`title-${x.id}`}><small>{x.year}</small>{x.title}</h4><p className={`description-${x.id}`} style={muted}>{x.content}</p></div></div>
-  if(mobile)return <section id="journey" className="timeline-mobile" style={colors}><div className="timeline-mobile-head"><img src={imageUrl} alt={imageAlt}/><h2>{title}</h2><p style={muted}>{periodLabel}</p></div><div className="timeline-mobile-list">{all.map(x=><article key={x.id} className="timeline-mobile-item"><span style={accent}/><div><small style={{color:activeColor}}>{x.year}</small><h3>{x.title}</h3><p style={muted}>{x.content}</p></div></article>)}</div></section>
-  return <section ref={sectionRef} id="journey" className="timeline-section" style={colors}><div className="timeline-sticky"><div ref={sliderRef} className="timeline-slider"><div className="timeline-photo"><img src={imageUrl} alt={imageAlt}/></div><div className="timeline-board"><div className="timeline-axis"><span style={accent}/><i className="journey-line" style={accent}/><span style={accent}/></div><div className="timeline-row timeline-row-top"><h2>{title}</h2><div className="timeline-items">{top.map(x=>item(x,true))}</div></div><div className="timeline-row timeline-row-bottom"><p style={muted}>{periodLabel}</p><div className="timeline-items">{bottom.map(x=>item(x,false))}</div></div></div></div></div></section>
+  return <>
+    <section ref={sectionRef} id="journey" className="timeline-section" style={colors}><div className="timeline-sticky"><div ref={sliderRef} className="timeline-slider"><div className="timeline-photo"><img src={imageUrl} alt={imageAlt}/></div><div className="timeline-board"><div className="timeline-axis"><span style={accent}/><i className="journey-line" style={accent}/><span style={accent}/></div><div className="timeline-row timeline-row-top"><h2>{title}</h2><div className="timeline-items">{top.map(x=>item(x,true))}</div></div><div className="timeline-row timeline-row-bottom"><p style={muted}>{periodLabel}</p><div className="timeline-items">{bottom.map(x=>item(x,false))}</div></div></div></div></div></section>
+    <section className="timeline-mobile" style={colors}><div className="timeline-mobile-head"><img src={imageUrl} alt={imageAlt}/><h2>{title}</h2><p style={muted}>{periodLabel}</p></div><div className="timeline-mobile-list">{all.map(x=><article key={x.id} className="timeline-mobile-item"><span style={accent}/><div><small style={{color:activeColor}}>{x.year}</small><h3>{x.title}</h3><p style={muted}>{x.content}</p></div></article>)}</div></section>
+  </>
 }
