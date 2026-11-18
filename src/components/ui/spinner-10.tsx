@@ -81,6 +81,7 @@ const LiquidWaveSpinner = memo(function LiquidWaveSpinner({
 
   return (
     <motion.div className={cn("liquid-wave-spinner", className)} {...props}>
+      {!hideText && <TextMorph words={words} interval={2000} className={config.fontSize} />}
       <svg viewBox="0 0 500 500" width={config.dimension} height={config.dimension} aria-hidden="true">
         <defs>
           <clipPath id={clipId}>
@@ -101,7 +102,6 @@ const LiquidWaveSpinner = memo(function LiquidWaveSpinner({
           </motion.g>
         </g>
       </svg>
-      {!hideText && <TextMorph words={words} interval={2000} className={config.fontSize} />}
     </motion.div>
   )
 })

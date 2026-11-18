@@ -26,8 +26,8 @@ export function SitePreloader() {
   return (
     <div className={`site-preloader${leaving ? ' is-leaving' : ''}`} role="status" aria-label="The Billion Group is loading">
       <div className="site-preloader-inner">
-        <BillionWordmark className="site-preloader-wordmark" />
         <LiquidWaveSpinner size="lg" />
+        <BillionWordmark className="site-preloader-wordmark" />
       </div>
     </div>
   )
