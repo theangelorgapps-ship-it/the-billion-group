@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite dev --port 3001",
     "build": "vite build",
+    "deploy:cloudflare": "npm run build && npx wrangler@latest pages deploy dist/client --project-name the-billion-group --branch main",
     "preview": "vite preview --port 3001",
     "typecheck": "tsc --noEmit"
   },

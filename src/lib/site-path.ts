@@ -9,5 +9,5 @@ export function sitePath(path = '/') {
 
 export function isHomePath(pathname: string) {
   const normalizedPathname = pathname.replace(/\/+$/, '') || '/'
-  return normalizedPathname === (basePath || '/')
+  return normalizedPathname === '/' || normalizedPathname === (basePath || '/')
 }
