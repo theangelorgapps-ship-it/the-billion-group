@@ -13,4 +13,4 @@ The development server is fixed to `http://127.0.0.1:3001` so it stays isolated 
 
 Pushes to `main` are typechecked, prerendered and deployed automatically to:
 
-`https://theangelorg.github.io/the-billion-group/`
+`https://theangelorgapps-ship-it.github.io/the-billion-group/`
